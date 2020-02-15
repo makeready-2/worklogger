@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateWorkLogs < ActiveRecord::Migration[6.0]
   def change
     create_table :work_logs do |t|
@@ -9,5 +11,7 @@ class CreateWorkLogs < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+    add_index :work_logs, %i[user_id start], unique: true
   end
 end
