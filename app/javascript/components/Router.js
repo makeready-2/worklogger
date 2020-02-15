@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import Header from "./Header";
 import initialStore from "../reducers";
 
-class Root extends React.Component {
+class Router extends React.Component {
   render () {
     return (
       <Provider store={ initialStore() }>
@@ -22,4 +22,4 @@ class Root extends React.Component {
   }
 }
 
-export default Root
+export default Router

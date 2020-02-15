@@ -3,10 +3,18 @@ Rails.application.routes.draw do
 
   end
 
-  # Forward all non-AJAX requests to the root (for react-router)
+  scope :api do
+    devise_for :users, only: %i[sessions registrations]
+
+    resources :work_logs
+  end
+
+  # Delegates all non-AJAX requests to the Router component
   get '*page', to: 'home#index', constraints: lambda { |req|
     !req.xhr? && req.format.html?
   }
+
+
 
   root to: "home#index"
 end
