@@ -1,7 +1,7 @@
 class WorkLog < ApplicationRecord
   belongs_to :user
 
-  def to_json(*_args)
+  def serialize
     attributes.symbolize_keys.slice(
       :start,
       :end,

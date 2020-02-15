@@ -11,12 +11,12 @@ class User < ApplicationRecord
     work_logs.find_by(end: nil)
   end
 
-  def to_json(*_args)
+  def serialize
     attributes.symbolize_keys.slice(
       :id,
       :name,
       :email,
       :supervisor_id
-    ).to_json
+    )
   end
 end

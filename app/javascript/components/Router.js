@@ -10,7 +10,7 @@ import initialStore from "../reducers";
 class Router extends React.Component {
   render () {
     return (
-      <Provider store={ initialStore() }>
+      <Provider store={ initialStore(this.props.initialState) }>
         <BrowserRouter>
           <Switch>
             <Route exact path="/" render={() => ("Ahoy")} />
@@ -21,5 +21,9 @@ class Router extends React.Component {
     );
   }
 }
+
+Router.proptypes = {
+  initialState: PropTypes.object
+};
 
 export default Router
