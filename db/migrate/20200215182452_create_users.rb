@@ -13,11 +13,12 @@ class CreateUsers < ActiveRecord::Migration[6.0]
 
       # Profile
       t.string :name
-      t.string
 
+      # Associations
+      t.integer :supervisor_id
     end
 
-    add_index :users, :email,                unique: true
+    add_index :users, :email, unique: true
   end
 
   def self.down
