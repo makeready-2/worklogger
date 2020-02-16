@@ -1,6 +1,7 @@
 # WorkLogger
 
 Time-limited exercise to build a clock-in/clock-out web app within 48 hours.
+Available at https://worklogger-gw.herokuapp.com/
 
 ### Approach
 
