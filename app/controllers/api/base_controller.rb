@@ -3,5 +3,23 @@
 module Api
   class BaseController
     format :json
+
+    protected
+
+    def authorize_admin!
+      return if current_user&.is_admin?
+
+      throw new AuthorizationError('Current user is not admin')
+    end
+
+    def authorize_supervisor!(report_id)
+      return if current_user&.supervises?(report_id)
+
+      throw new AuthorizationError(
+        "Current user does not supervise #{report_id}"
+      )
+    end
   end
 end
+
+class AuthorizationError < StandardError; end

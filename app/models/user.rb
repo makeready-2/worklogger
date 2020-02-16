@@ -19,4 +19,12 @@ class User < ApplicationRecord
       :supervisor_id
     )
   end
+
+  def is_admin?
+    roles.include?(Role.admin)
+  end
+
+  def supervises?(report_id)
+    User.find_by(id: report_id)&.supervisor_id == id
+  end
 end

@@ -1,5 +1,6 @@
 import { createStore } from "redux"
 import { merge } from "lodash"
+import thunk from "redux-thunk";
 
 const initialState = {
 

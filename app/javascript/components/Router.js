@@ -4,17 +4,22 @@ import PropTypes from "prop-types"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import { Provider } from 'react-redux'
 
-import Header from "./Header";
+import Header from "./elements/Header";
 import initialStore from "../reducers";
 
 class Router extends React.Component {
   render () {
     return (
       <Provider store={ initialStore(this.props.initialState) }>
+        <Header />
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" render={() => ("Ahoy")} />
-            <Route path="/goodbye" render={() => <Header/>} />
+            <Route exact path="/"><WorkLogPage /></Route>
+            <Route path="/login"><LoginPage /></Route>
+            <Route path="/register"><RegisterPage /></Route>
+            <Route path="/history"><HistoryPage /></Route>
+            <Route path="/edit"><EditPage /></Route>
+            <Route path="/review"><ReviewPage /></Route>
           </Switch>
         </BrowserRouter>
       </Provider>
