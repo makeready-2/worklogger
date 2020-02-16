@@ -36,13 +36,15 @@ const RegisterPage = ({ formData, user,
           <input type="password" value={formData.passwordConfirmation} onChange={updatePasswordConfirmation}/>
         </label>
 
-        <button onClick={submit}>
-          Submit
-        </button>
+        <div>
+          <input type="submit" onClick={submit} value="Submit"/>
+        </div>
 
         <FormError error={formData.error}/>
 
-        <Link to="/login">Click here to log in</Link>
+        <div>
+          <Link to="/login">Already registered? Click here to log in</Link>
+        </div>
       </React.Fragment>
     )
   }

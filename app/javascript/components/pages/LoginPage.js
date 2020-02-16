@@ -24,13 +24,16 @@ export const LoginPage = ({ formData, user, updateEmail, updatePassword, submitL
           <input type="password" value={formData.password} onChange={updatePassword}/>
         </label>
 
-        <button onClick={submitLogin}>
-          Submit
-        </button>
+        <div>
+          <input type="submit" onClick={submitLogin} value="Submit"/>
+        </div>
+
 
         <FormError error={formData.error}/>
 
-        <Link to="/register">Click here to register</Link>
+        <div>
+          <Link to="/register">Click here to register</Link>
+        </div>
       </React.Fragment>
     )
   }
