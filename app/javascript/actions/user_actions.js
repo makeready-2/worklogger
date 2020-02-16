@@ -28,7 +28,8 @@ export function submitRegistration() {
 
 export function logOut() {
   return (dispatch) => {
-    axios.delete("/api/users/sign_out", {})
+    axios
+      .delete("/api/users/sign_out", {})
       .then(() => {
         dispatch({ type: actions.LOGOUT_USER_ACTION, user: {} })
       })
