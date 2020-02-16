@@ -2,23 +2,20 @@
 
 module Api
   class Users::SessionsController < Devise::SessionsController
+
     # before_action :configure_sign_in_params, only: [:create]
 
-    # GET /resource/sign_in
-    # def new
-    #   super
-    # end
-
     # POST /resource/sign_in
-    # def create
-    #   super
-    # end
+    def create
+      user = warden.authenticate!(auth_options)
+      sign_in(resource_name, user)
+      render json: { user: user.serialize }
+    end
 
     # DELETE /resource/sign_out
     def destroy
       Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
-      yield if block_given?
-      respond_to_on_destroy
+      render json: {}
     end
 
     # protected

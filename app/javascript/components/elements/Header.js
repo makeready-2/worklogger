@@ -22,7 +22,7 @@ const Header = ({ user, logOut }) => {
 const mapStateToProps = ({ user }) => ({ user });
 
 const mapDispatchToProps = dispatch => ({
-  logOut: dispatch(actions.logOut())
+  logOut: () => dispatch(actions.logOut())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

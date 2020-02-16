@@ -20,6 +20,9 @@ export default {
           ...state,
           error: action.error
         };
+      case actions.LOGIN_USER_ACTION:
+      case actions.LOGOUT_USER_ACTION:
+        return {};
       default:
         return state
     }
