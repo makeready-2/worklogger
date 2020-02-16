@@ -6,7 +6,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         [action.form]: {
-          ...action.form,
+          ...state[action.form],
           [action.field]: action.value
         }
       };

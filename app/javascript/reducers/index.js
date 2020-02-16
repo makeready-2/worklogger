@@ -2,6 +2,7 @@ import { createStore, applyMiddleware } from "redux"
 import { merge } from "lodash"
 import thunk from "redux-thunk";
 import formsReducer from "./forms_reducer"
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const initialState = {
   forms: {
@@ -18,7 +19,7 @@ export default function initialStore(railsProps) {
   return createStore(
     reducer,
     merge(initialState, railsProps),
-    applyMiddleware(thunk)
+    composeWithDevTools(applyMiddleware(thunk))
   );
 }
 

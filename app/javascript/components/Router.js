@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import Header from "./elements/Header";
 import WorkLogPage from "./pages/WorkLogPage";
 import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage"
 import initialStore from "../reducers";
 
 class Router extends React.Component {
@@ -19,9 +20,9 @@ class Router extends React.Component {
             <Route exact path="/"><WorkLogPage /></Route>
             <Route path="/login"><LoginPage /></Route>
             <Route path="/register"><RegisterPage /></Route>
-            <Route path="/history"><HistoryPage /></Route>
-            <Route path="/edit"><EditPage /></Route>
-            <Route path="/review"><ReviewPage /></Route>
+            {/*<Route path="/history"><HistoryPage /></Route>*/}
+            {/*<Route path="/edit"><EditPage /></Route>*/}
+            {/*<Route path="/review"><ReviewPage /></Route>*/}
           </Switch>
         </BrowserRouter>
       </Provider>
