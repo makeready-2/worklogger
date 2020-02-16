@@ -45,7 +45,7 @@ export function submitLogin() {
         password: formData.password
       }
     }).then(response => {
-      dispatch({ type: actions.LOGIN_USER_ACTION, user: response.data.user })
+      dispatch({ type: actions.LOGIN_USER_ACTION, user: response.data.user, workLog: response.data.log })
     }).catch(error => {
       dispatch({ type: actions.FORM_ERROR_USER_ACTION, error: error.message })
     })

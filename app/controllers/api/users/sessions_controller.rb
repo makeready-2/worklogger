@@ -6,7 +6,7 @@ module Api
       user = warden.authenticate(auth_options)
       if user
         sign_in(resource_name, user)
-        render json: { user: user.serialize }
+        render json: { user: user.serialize, log: user.active_work_log }
       else
         render json: {}, status: :unauthorized
       end
