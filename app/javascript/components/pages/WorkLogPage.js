@@ -34,7 +34,7 @@ export const WorkLogPage = ({ user, workLog, history, clockIn, clockOut }) => {
 
 const CurrentTime = () => {
   return (
-    <h1>Current Time: { getCurrentTime() }</h1>
+    <h1>Current Time: { getCurrentUTCTime() } UTC</h1>
   )
 };
 
@@ -43,17 +43,6 @@ const WorkLog = ({ workLog }) => {
     <React.Fragment>
       <h2>Clocked in since { workLog.start }</h2>
       <p>You have been working for { workLog.age }</p>
-    </React.Fragment>
-  )
-};
-
-const History = ({ history }) => {
-  return (
-    <React.Fragment>
-      <h3>History</h3>
-      <ul style={ historyListStyle }>
-        <HistoryItems history={ history } />
-      </ul>
     </React.Fragment>
   )
 };
@@ -67,21 +56,31 @@ const historyItemStyle = {
   marginBottom: '10px'
 };
 
-const historyDataStyle = {
-
+const History = ({ history }) => {
+  return (
+    <React.Fragment>
+      <h3>History</h3>
+      <ul style={ historyListStyle }>
+        <HistoryItems history={ history } />
+      </ul>
+    </React.Fragment>
+  )
 };
 
 const HistoryItems = ({ history }) => {
-  return Object.keys(history).reverse().map((key, index) =>
+  return Object.keys(history).reverse().map((key) =>
     <li key={key} style={ historyItemStyle }>
-      <div style={ historyDataStyle }>In: { history[key].start }</div>
-      <div style={ historyDataStyle }>Out: { history[key].end }</div>
-      <div style={ historyDataStyle }>{ history[key].age }</div>
+      <div>In: { history[key].start }</div>
+      <div>Out: { history[key].end }</div>
+      <div>{ history[key].age }</div>
     </li>
   )
 };
 
-const getCurrentTime = () => new Date().toLocaleTimeString();
+const getCurrentUTCTime = () => {
+  const now = new Date();
+  return new Date(now.getTime() + now.getTimezoneOffset() * 60000).toLocaleTimeString();
+};
 
 const mapStateToProps = ({user, workLog, history}) => ({
   user,
