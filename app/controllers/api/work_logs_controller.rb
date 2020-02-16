@@ -9,9 +9,13 @@ module Api
 
     def clock_out
       work_log = current_user.active_work_log
-      work_log.end = Time.now
-      work_log.save
-      render json: { workLog: work_log.serialize }, status: 200
+      if work_log
+        work_log.end = Time.now
+        work_log.save
+        render json: { workLog: work_log.serialize }, status: 200
+      else
+        render json: {}, status: 400
+      end
     end
   end
 end

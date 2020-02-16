@@ -6,6 +6,7 @@ export default {
       case actions.CLOCKED_OUT_WORK_LOG_ACTION:
         return undefined;
       case actions.CLOCKED_IN_WORK_LOG_ACTION:
+      case actions.LOGIN_USER_ACTION:
         return {
           ...action.workLog
         };

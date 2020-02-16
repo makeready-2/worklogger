@@ -57,14 +57,16 @@ const historyItemStyle = {
 };
 
 const History = ({ history }) => {
-  return (
-    <React.Fragment>
-      <h3>History</h3>
-      <ul style={ historyListStyle }>
-        <HistoryItems history={ history } />
-      </ul>
-    </React.Fragment>
-  )
+  if (history) {
+    return (
+      <React.Fragment>
+        <h3>History</h3>
+        <ul style={historyListStyle}>
+          <HistoryItems history={history}/>
+        </ul>
+      </React.Fragment>
+    )
+  }
 };
 
 const HistoryItems = ({ history }) => {

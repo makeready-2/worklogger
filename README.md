@@ -27,6 +27,7 @@ Features
 * Reports - visualise a single employee's work history or an entire team's
 
 Frontend technology
+* Fix js console warnings regarding controlled vs uncontrolled form inputs
 * Jest tests for all components, reducers, and actions. All JS objects in the project are unit-testable without having to spin up a phantom browser.
 * Paginate + prettify work log history
 * Current time + time clocked in should be dynamically rendered (tick as you watch)
