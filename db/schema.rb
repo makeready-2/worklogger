@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 2020_02_15_185300) do
   end
 
   create_table "work_logs", force: :cascade do |t|
-    t.time "start"
-    t.time "end"
+    t.datetime "start"
+    t.datetime "end"
     t.string "status"
     t.integer "user_id"
     t.jsonb "pending_edits"

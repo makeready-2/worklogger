@@ -5,7 +5,8 @@ Rails.application.routes.draw do
       registrations: 'api/users/registrations'
     }
 
-    resources :work_logs
+    post 'work_logs/clock_in', to: 'api/work_logs#clock_in'
+    post 'work_logs/clock_out', to: 'api/work_logs#clock_out'
   end
 
   # Delegates all non-AJAX requests to the Router component

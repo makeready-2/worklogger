@@ -3,8 +3,8 @@
 class CreateWorkLogs < ActiveRecord::Migration[6.0]
   def change
     create_table :work_logs do |t|
-      t.time :start
-      t.time :end
+      t.datetime :start
+      t.datetime :end
       t.string :status
       t.integer :user_id
       t.jsonb :pending_edits

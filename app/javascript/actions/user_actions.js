@@ -1,5 +1,5 @@
 import * as actions from './constants'
-import ax from "../utilities/ax"
+import axios from 'axios'
 
 export function updateForm(value, field) {
   return {
@@ -13,7 +13,7 @@ export function submitRegistration() {
   return (dispatch, getState) => {
     const formData = getState().formData;
 
-    ax.post("/api/users", {
+    axios.post("/api/users", {
       email: formData.email,
       name: formData.name,
       password: formData.password,
@@ -28,7 +28,7 @@ export function submitRegistration() {
 
 export function logOut() {
   return (dispatch) => {
-    ax.delete("/api/users/sign_out", {})
+    axios.delete("/api/users/sign_out", {})
       .then(() => {
         dispatch({ type: actions.LOGOUT_USER_ACTION, user: {} })
       })
@@ -39,7 +39,7 @@ export function submitLogin() {
   return (dispatch, getState) => {
     const formData = getState().formData;
 
-    ax.post("/api/users/sign_in", {
+    axios.post("/api/users/sign_in", {
       user: {
         email: formData.email,
         password: formData.password

@@ -7,6 +7,6 @@ class WorkLog < ApplicationRecord
       :end,
       :status,
       :pending_edits
-    ).to_json
+    )
   end
 end
