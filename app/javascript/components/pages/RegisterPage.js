@@ -1,48 +1,54 @@
 import React from "react";
 import { connect } from "react-redux"
 import { submitRegistration, updateForm } from "../../actions/user_actions";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import FormError from "../elements/FormError";
 
-const RegisterPage = ({ formData,
-                        updateEmail, updatePassword, updatePasswordConfirmation,
+const RegisterPage = ({ formData, user,
+                        updateEmail, updatePassword, updatePasswordConfirmation, updateName,
                         submit }) => {
-  return (
-    <React.Fragment>
-      <h1>Register</h1>
+  if (user && user.email) {
+    return (
+      <Redirect to={{ pathname: "/" }} />
+    )
+  } else {
+    return (
+      <React.Fragment>
+        <h1>Register</h1>
 
-      <label>
-        <p>Email</p>
-        <input type="text" value={ formData.email } onChange={ updateEmail }/>
-      </label>
+        <label>
+          <p>Email</p>
+          <input type="text" value={formData.email} onChange={updateEmail}/>
+        </label>
 
-      <label>
-        <p>Name</p>
-        <input type="text" value={ formData.name } onChange={ updateName }/>
-      </label>
+        <label>
+          <p>Name</p>
+          <input type="text" value={formData.name} onChange={updateName}/>
+        </label>
 
-      <label>
-        <p>Password</p>
-        <input type="password" value={ formData.password } onChange={ updatePassword } />
-      </label>
+        <label>
+          <p>Password</p>
+          <input type="password" value={formData.password} onChange={updatePassword}/>
+        </label>
 
-      <label>
-        <p>Confirm Password</p>
-        <input type="password" value={ formData.passwordConfirmation } onChange={ updatePasswordConfirmation } />
-      </label>
+        <label>
+          <p>Confirm Password</p>
+          <input type="password" value={formData.passwordConfirmation} onChange={updatePasswordConfirmation}/>
+        </label>
 
-      <button onClick={ submit } >
-        Submit
-      </button>
+        <button onClick={submit}>
+          Submit
+        </button>
 
-      <FormError error={formData.error} />
+        <FormError error={formData.error}/>
 
-      <Link to="/login">Click here to log in</Link>
-    </React.Fragment>
-  )
+        <Link to="/login">Click here to log in</Link>
+      </React.Fragment>
+    )
+  }
 };
 
-const mapStateToProps = ({ formData }) => ({ formData });
+const mapStateToProps = ({ formData, user }) => ({ formData, user });
 
 const mapDispatchToProps = dispatch => ({
   updateEmail: (e) => {

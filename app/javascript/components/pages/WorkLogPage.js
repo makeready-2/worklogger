@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
 
 export const WorkLogPage = ({ user }) => {
-  if (user.email) {
+  if (user && user.email) {
     return (
       <React.Fragment>
 

@@ -1,13 +1,28 @@
 import React from "react"
-import PropTypes from "prop-types"
-class Header extends React.Component {
-  render () {
-    return (
-      <React.Fragment>
-        Goodbye
-      </React.Fragment>
-    );
-  }
-}
+import * as actions from "../../actions/user_actions"
+import { connect } from "react-redux"
 
-export default Header
+const Header = ({ user, logOut }) => {
+  return (
+    <div style={{}}>
+      <div style={{}}>
+        WorkLogger 🌲
+      </div>
+      <div style={{}}>
+        { user && user.email &&
+          <button onClick={ logOut }>
+            Log Out
+          </button>
+        }
+      </div>
+    </div>
+  );
+};
+
+const mapStateToProps = ({ user }) => ({ user });
+
+const mapDispatchToProps = dispatch => ({
+  logOut: dispatch(actions.logOut())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

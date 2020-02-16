@@ -2,26 +2,15 @@
 
 module Api
   class Users::RegistrationsController < Devise::RegistrationsController
-    # before_action :configure_sign_up_params, only: [:create]
-    # before_action :configure_account_update_params, only: [:update]
-
-    # GET /resource/sign_up
-    # def new
-    #   super
-    # end
-
     # POST /resource
     def create
-      byebug
-      build_resource(params.permit(:name, :email, :password, :password_confirmation))
-      resource.save
-      if resource.persisted?
-        sign_up(resource_name, resource)
-        render json: resource.serialize
+      user = User.create!(sign_up_params)
+      if user.persisted?
+        sign_up(resource_name, user)
+        render json: { user: user.serialize }
       else
-        clean_up_passwords resource
-        set_minimum_password_length
-        respond_with resource
+        clean_up_passwords user
+        render status: 422
       end
     end
 
@@ -49,12 +38,11 @@ module Api
     #   super
     # end
 
-    # protected
+    protected
 
-    # If you have extra params to permit, append them to the sanitizer.
-    # def configure_sign_up_params
-    #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-    # end
+    def sign_up_params
+      params.permit(%i[name email password password_confirmation])
+    end
 
     # If you have extra params to permit, append them to the sanitizer.
     # def configure_account_update_params
