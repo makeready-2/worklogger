@@ -2,8 +2,9 @@ import React from "react";
 import { connect } from "react-redux"
 import { submitRegistration, updateForm } from "../../actions/user_actions";
 import { Link } from "react-router-dom";
+import FormError from "../elements/FormError";
 
-const RegisterPage = ({ email, password, passwordConfirmation,
+const RegisterPage = ({ formData,
                         updateEmail, updatePassword, updatePasswordConfirmation,
                         submit }) => {
   return (
@@ -12,29 +13,36 @@ const RegisterPage = ({ email, password, passwordConfirmation,
 
       <label>
         <p>Email</p>
-        <input type="text" value={ email } onChange={ updateEmail }/>
+        <input type="text" value={ formData.email } onChange={ updateEmail }/>
+      </label>
+
+      <label>
+        <p>Name</p>
+        <input type="text" value={ formData.name } onChange={ updateName }/>
       </label>
 
       <label>
         <p>Password</p>
-        <input type="password" value={ password } onChange={ updatePassword } />
+        <input type="password" value={ formData.password } onChange={ updatePassword } />
       </label>
 
       <label>
         <p>Confirm Password</p>
-        <input type="password" value={ passwordConfirmation } onChange={ updatePasswordConfirmation } />
+        <input type="password" value={ formData.passwordConfirmation } onChange={ updatePasswordConfirmation } />
       </label>
 
       <button onClick={ submit } >
         Submit
       </button>
 
+      <FormError error={formData.error} />
+
       <Link to="/login">Click here to log in</Link>
     </React.Fragment>
   )
 };
 
-const mapStateToProps = ({ forms }) => ({ ...forms.registration });
+const mapStateToProps = ({ formData }) => ({ formData });
 
 const mapDispatchToProps = dispatch => ({
   updateEmail: (e) => {
@@ -44,6 +52,10 @@ const mapDispatchToProps = dispatch => ({
   updatePassword: (e) => {
     e.preventDefault();
     dispatch(updateForm(e.target.value, 'password'))
+  },
+  updateName: (e) => {
+    e.preventDefault();
+    dispatch(updateForm(e.target.value, 'name'))
   },
   updatePasswordConfirmation: (e) => {
     e.preventDefault();

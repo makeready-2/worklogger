@@ -11,9 +11,19 @@ module Api
     # end
 
     # POST /resource
-    # def create
-    #   super
-    # end
+    def create
+      byebug
+      build_resource(params.permit(:name, :email, :password, :password_confirmation))
+      resource.save
+      if resource.persisted?
+        sign_up(resource_name, resource)
+        render json: resource.serialize
+      else
+        clean_up_passwords resource
+        set_minimum_password_length
+        respond_with resource
+      end
+    end
 
     # GET /resource/edit
     # def edit
