@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
 import { clockIn, clockOut } from "../../actions/work_log_actions";
 
-export const WorkLogPage = ({ user, workLog, clockIn, clockOut }) => {
+export const WorkLogPage = ({ user, workLog, history, clockIn, clockOut }) => {
   if (!user || !user.email) {
     return (
       <Redirect to={{ pathname: "/login" }} />
@@ -15,6 +15,7 @@ export const WorkLogPage = ({ user, workLog, clockIn, clockOut }) => {
         <button onClick={ clockIn }>
           Clock In
         </button>
+        <History history={ history } />
       </React.Fragment>
     )
   } else {
@@ -25,6 +26,7 @@ export const WorkLogPage = ({ user, workLog, clockIn, clockOut }) => {
         <button onClick={ clockOut }>
           Clock Out
         </button>
+        <History history={ history } />
       </React.Fragment>
     )
   }
@@ -39,21 +41,52 @@ const CurrentTime = () => {
 const WorkLog = ({ workLog }) => {
   return (
     <React.Fragment>
-    <h2>Clocked in since { workLog.start }</h2>
-    <p>You have been working for { age(workLog) }</p>
+      <h2>Clocked in since { workLog.start }</h2>
+      <p>You have been working for { workLog.age }</p>
     </React.Fragment>
   )
 };
 
-const age = (workLog) => {
-  return getCurrentTime() - workLog.start
+const History = ({ history }) => {
+  return (
+    <React.Fragment>
+      <h3>History</h3>
+      <ul style={ historyListStyle }>
+        <HistoryItems history={ history } />
+      </ul>
+    </React.Fragment>
+  )
+};
+
+const historyListStyle = {
+  paddingLeft: '0'
+};
+
+const historyItemStyle = {
+  listStyleType: 'none',
+  marginBottom: '10px'
+};
+
+const historyDataStyle = {
+
+};
+
+const HistoryItems = ({ history }) => {
+  return Object.keys(history).reverse().map((key, index) =>
+    <li key={key} style={ historyItemStyle }>
+      <div style={ historyDataStyle }>In: { history[key].start }</div>
+      <div style={ historyDataStyle }>Out: { history[key].end }</div>
+      <div style={ historyDataStyle }>{ history[key].age }</div>
+    </li>
+  )
 };
 
 const getCurrentTime = () => new Date().toLocaleTimeString();
 
-const mapStateToProps = ({user, workLog}) => ({
+const mapStateToProps = ({user, workLog, history}) => ({
   user,
-  workLog
+  workLog,
+  history
 });
 
 const mapDispatchToProps = dispatch => ({

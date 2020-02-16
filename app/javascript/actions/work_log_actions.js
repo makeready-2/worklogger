@@ -13,8 +13,8 @@ export function clockIn() {
 
 export function clockOut() {
   return dispatch => {
-    axios.post("/api/work_logs/clock_out").then(() => {
-      dispatch({ type: actions.CLOCKED_OUT_WORK_LOG_ACTION })
+    axios.post("/api/work_logs/clock_out").then(response => {
+      dispatch({ type: actions.CLOCKED_OUT_WORK_LOG_ACTION, workLog: response.data.workLog })
     }).catch(error => {
       alert("Clock out error! " + error.message)
     })

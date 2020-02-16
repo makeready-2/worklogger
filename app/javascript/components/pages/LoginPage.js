@@ -11,7 +11,7 @@ export const LoginPage = ({ formData, user, updateEmail, updatePassword, submitL
     )
   } else {
     return (
-      <React.Fragment>
+      <form>
         <h1>Log In</h1>
 
         <label>
@@ -34,7 +34,7 @@ export const LoginPage = ({ formData, user, updateEmail, updatePassword, submitL
         <div>
           <Link to="/register">Click here to register</Link>
         </div>
-      </React.Fragment>
+      </form>
     )
   }
 };
@@ -44,7 +44,10 @@ const mapStateToProps = ({ formData, user }) => ({ formData, user });
 const mapDispatchToProps = dispatch => ({
   updateEmail: (e) => dispatch(updateForm(e.target.value, 'email')),
   updatePassword: (e) => dispatch(updateForm(e.target.value, 'password')),
-  submitLogin: () => dispatch(submitLogin())
+  submitLogin: (e) => {
+    e.preventDefault();
+    dispatch(submitLogin())
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)

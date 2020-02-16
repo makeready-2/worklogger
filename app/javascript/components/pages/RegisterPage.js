@@ -13,7 +13,7 @@ const RegisterPage = ({ formData, user,
     )
   } else {
     return (
-      <React.Fragment>
+      <form>
         <h1>Register</h1>
 
         <label>
@@ -45,7 +45,7 @@ const RegisterPage = ({ formData, user,
         <div>
           <Link to="/login">Already registered? Click here to log in</Link>
         </div>
-      </React.Fragment>
+      </form>
     )
   }
 };
@@ -69,7 +69,10 @@ const mapDispatchToProps = dispatch => ({
     e.preventDefault();
     dispatch(updateForm(e.target.value, 'passwordConfirmation'))
   },
-  submit: () => dispatch(submitRegistration())
+  submit: (e) => {
+    e.preventDefault();
+    dispatch(submitRegistration())
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage)
