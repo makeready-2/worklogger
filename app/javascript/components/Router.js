@@ -5,6 +5,8 @@ import { BrowserRouter, Switch, Route } from "react-router-dom"
 import { Provider } from 'react-redux'
 
 import Header from "./elements/Header";
+import WorkLogPage from "./pages/WorkLogPage";
+import LoginPage from "./pages/LoginPage";
 import initialStore from "../reducers";
 
 class Router extends React.Component {

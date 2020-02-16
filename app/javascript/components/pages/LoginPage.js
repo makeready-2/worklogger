@@ -1,42 +1,38 @@
 import React from "react";
 import { connect } from "react-redux"
-import { link } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { submitLogin, updateForm } from "../../actions/user_actions";
 
-export const LoginPage = ({ email, password, updateForm, submitLogin }) => {
+export const LoginPage = ({ email, password, updateEmail, updatePassword, submitLogin }) => {
   return (
     <React.Fragment>
       <h1>Log In</h1>
-      <form onSubmit={(e) => submitLogin()} >
-        <label>
-          <p>Email</p>
-          <input type="text" value={ email } onChange={ (e) => updateForm(e.target.value, 'email') }/>
-        </label>
 
-        <label>
-          <p>Password</p>
-          <input type="password" value={ password } onChange={ (e) => updateForm(e.target.value, 'password') } />
-        </label>
+      <label>
+        <p>Email</p>
+        <input type="text" value={ email } onChange={ updateEmail }/>
+      </label>
 
-        <input type="submit" value="submit" />
-      </form>
+      <label>
+        <p>Password</p>
+        <input type="password" value={ password } onChange={ updatePassword } />
+      </label>
+
+      <button onClick={ submitLogin } >
+        Submit
+      </button>
+
       <Link to="/register">Click here to register</Link>
     </React.Fragment>
   )
 };
 
-const mapStateToProps = state => {
-  return {
-    form: state.forms.login.email,
-    password: state.forms.login.password
-  }
-};
+const mapStateToProps = ({ forms }) => ({...forms.login});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    updateForm,
-    submitLogin
-  }
-};
+const mapDispatchToProps = dispatch => ({
+  updateEmail: (e) => dispatch(updateForm(e.target.value, 'login', 'email')),
+  updatePassword: (e) => dispatch(updateForm(e.target.value, 'login', 'password')),
+  submitLogin: () => dispatch(submitLogin())
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
