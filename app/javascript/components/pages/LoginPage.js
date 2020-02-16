@@ -30,8 +30,8 @@ export const LoginPage = ({ email, password, updateEmail, updatePassword, submit
 const mapStateToProps = ({ forms }) => ({...forms.login});
 
 const mapDispatchToProps = dispatch => ({
-  updateEmail: (e) => dispatch(updateForm(e.target.value, 'login', 'email')),
-  updatePassword: (e) => dispatch(updateForm(e.target.value, 'login', 'password')),
+  updateEmail: (e) => dispatch(updateForm(e.target.value, 'email')),
+  updatePassword: (e) => dispatch(updateForm(e.target.value, 'password')),
   submitLogin: () => dispatch(submitLogin())
 });
 

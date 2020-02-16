@@ -2,17 +2,17 @@ import { createStore, applyMiddleware } from "redux"
 import { merge } from "lodash"
 import thunk from "redux-thunk";
 import formsReducer from "./forms_reducer"
+import userReducer from "./user_reducer"
 import { composeWithDevTools } from "redux-devtools-extension";
 
 const initialState = {
-  forms: {
-    login: {},
-    registration: {}
-  }
+  formData: formsReducer.initialState,
+  user: userReducer.initialState
 };
 
 const reducer = (state, action) => ({
-  forms: formsReducer(state.forms, action)
+  formData: formsReducer(state.formData, action),
+  user: userReducer(state.user, action)
 });
 
 export default function initialStore(railsProps) {

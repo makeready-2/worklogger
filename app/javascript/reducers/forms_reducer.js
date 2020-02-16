@@ -5,28 +5,13 @@ const reducer = (state, action) => {
     case actions.UPDATE_FORM_USER_ACTION:
       return {
         ...state,
-        [action.form]: {
-          ...state[action.form],
-          [action.field]: action.value
-        }
+        [action.field]: action.value
       };
-    case actions.LOGIN_USER_ACTION:
+    case actions.CLEAR_PASSWORDS_USER_ACTION:
       return {
         ...state,
-        login: {
-          ...state.login,
-          password: undefined
-        }
-      };
-
-    case actions.REGISTER_USER_ACTION:
-      return {
-        ...state,
-        registration: {
-          ...state.registration,
-          password: undefined,
-          passwordConfirmation: undefined
-        }
+        password: undefined,
+        passwordConfirmation: undefined
       };
     default:
       return state

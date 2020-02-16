@@ -21,7 +21,7 @@ const RegisterPage = ({ email, password, passwordConfirmation,
       </label>
 
       <label>
-        <p>Confirm  Password</p>
+        <p>Confirm Password</p>
         <input type="password" value={ passwordConfirmation } onChange={ updatePasswordConfirmation } />
       </label>
 
@@ -39,15 +39,15 @@ const mapStateToProps = ({ forms }) => ({ ...forms.registration });
 const mapDispatchToProps = dispatch => ({
   updateEmail: (e) => {
     e.preventDefault();
-    dispatch(updateForm(e.target.value, 'login', 'email'))
+    dispatch(updateForm(e.target.value, 'email'))
   },
   updatePassword: (e) => {
     e.preventDefault();
-    dispatch(updateForm(e.target.value, 'login', 'password'))
+    dispatch(updateForm(e.target.value, 'password'))
   },
   updatePasswordConfirmation: (e) => {
     e.preventDefault();
-    dispatch(updateForm(e.target.value, 'login', 'passwordConfirmation'))
+    dispatch(updateForm(e.target.value, 'passwordConfirmation'))
   },
   submit: () => dispatch(submitRegistration())
 });
