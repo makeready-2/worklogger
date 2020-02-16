@@ -28,6 +28,7 @@ Features
 * Audit trails
 
 Frontend technology
+* Show times in local zone
 * Fix js console warnings regarding controlled vs uncontrolled form inputs
 * Jest tests for all components, reducers, and actions. All JS objects in the project are unit-testable without having to spin up a phantom browser.
 * Paginate + prettify work log history
