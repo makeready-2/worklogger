@@ -63,4 +63,10 @@ rake db:migrate
 rake db:seed
 rails s
 ```
-The server will be available at localhost:3000.
+
+Then, in a different process, to build the js and watch for changes:
+```
+./bin/webpack-dev-server
+```
+
+The app will be available at localhost:3000.
