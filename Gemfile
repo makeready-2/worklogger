@@ -7,7 +7,7 @@ ruby '2.5.3'
 
 gem 'jbuilder', '~> 2.7'
 gem 'pg'
-gem 'puma', '~> 4.1'
+gem 'puma', '~> 4.3'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 gem 'react-rails'
 gem 'sass-rails', '>= 6'
